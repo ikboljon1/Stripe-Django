@@ -31,8 +31,8 @@ env = Env(
 
 # Application.
 URL_PREFIX = env("URL_PREFIX")
-STRIPE_API_PUBLISHABLE_KEY = env("pk_test_51JwpaDCcjusXu94Bel3xrNlT0OTRyASakRj3icwoLgDZREvRJS2DRvSGH8oM3mTdb8uGIqT6PFaUMy6IpJK1NFvq00GivOoc7Z")
-STRIPE_API_SECRET_KEY = env("sk_test_51JwpaDCcjusXu94B5IPPNzIZ85rorvqXvT0J3GmwQqwO4wBbZtkjY2SyAgGSQy2ES2VG5fpyFHojmL5U0vNuUntN00XvLoJyWG")
+STRIPE_API_PUBLISHABLE_KEY = env("<your test publishable key here>")
+STRIPE_API_SECRET_KEY = env("<your test secret key here>")
 
 # Django settings.
 DEBUG = env("DEBUG")
