@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Buy {{ item.name }}</title>
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <h1>{{ item }}</h1>
+    <p>Description: {{ item.description }}</p>
+    <button id="buy-button">Buy for {{ item.get_display_price }}$</button>
+    <script type="text/javascript">
+      // Подключиться к Stripe API.
+      let stripe = Stripe("{{ stripe_api_pk }}");
+
+      let buyButton = document.getElementById("buy-button");
+      buyButton.addEventListener("click", function () {
+        // Когда мы нажали кнопку купить.
+        fetch("{{ buy_fetch_endpoint }}", { method: "GET" })
+          .then((response) => response.json())
+          .then((response) => {
+            // Получаем покупную конечную точку и получаем с сервера,
+            // фактическая полосовая сессия.
+
+            // Идентификатор сеанса полосы.
+            let sessionId = response?.success?.stripe_session?.id;
+
+            // Перенаправление на экран оплаты!
+            stripe.redirectToCheckout({ sessionId: sessionId });
+          });
+      });
+    </script>
+  </body>
+</html>
